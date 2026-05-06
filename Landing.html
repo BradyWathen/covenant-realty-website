@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Covenant Realty — Central Utah Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F8F9FC;
+    --cream-2: #EBF0FA;
+    --ink: #1A2A5E;
+    --ink-soft: #3D5080;
+    --muted: #8A96B8;
+    --line: #C8D5EF;
+    --terracotta: #F5B800;
+    --terracotta-dark: #C99A00;
+    --forest: #0F1B3D;
+    --sand: #FFF8D6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--terracotta);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all .25s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--terracotta); color: var(--ink); font-weight: 600; }
+  .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(248, 249, 252, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-links { display: flex; gap: 32px; font-size: 15px; }
+  .nav-links a { color: var(--ink-soft); transition: color .2s; }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta { display: flex; align-items: center; gap: 18px; font-size: 14px; }
+  .nav-phone { color: var(--ink); font-weight: 500; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(to right, rgba(15,27,61,0.70) 0%, rgba(15,27,61,0.40) 50%, rgba(15,27,61,0.15) 100%), url('images/housebackground.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 640px;
+    color: #fff;
+    padding: 120px 0 80px;
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: clamp(42px, 6vw, 68px);
+    font-weight: 400;
+    margin: 18px 0 20px;
+  }
+  .hero h1 em { font-style: italic; color: #FFE082; font-weight: 400; }
+  .hero p {
+    color: rgba(255,255,255,0.88);
+    font-size: 18px;
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .hero .eyebrow { color: #FFE082; }
+
+
+  /* VALUE PROPS */
+  .values {
+    padding: 90px 0;
+    background: var(--cream);
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .value-card { }
+  .value-card .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: var(--terracotta-dark);
+  }
+  .value-card h3 { font-size: 22px; margin-bottom: 10px; }
+  .value-card p { color: var(--ink-soft); font-size: 15px; }
+
+  /* LISTINGS */
+  .listings {
+    padding: 100px 0;
+    background: var(--cream-2);
+  }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+    gap: 40px;
+  }
+  .section-header h2 {
+    font-size: clamp(32px, 4vw, 46px);
+    max-width: 560px;
+  }
+  .section-header h2 em { font-style: italic; color: var(--terracotta); }
+  .section-header p { color: var(--ink-soft); max-width: 360px; font-size: 15px; }
+
+  .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .listing {
+    background: var(--cream);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+    cursor: pointer;
+  }
+  .listing:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(26,42,94,0.25); }
+  .listing-photo {
+    aspect-ratio: 4 / 3;
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .listing-tag {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--cream); color: var(--ink);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+  }
+  .listing-body { padding: 24px 26px 28px; }
+  .listing-price {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 500;
+    color: var(--ink);
+  }
+  .listing-addr { color: var(--ink-soft); font-size: 15px; margin: 4px 0 16px; }
+  .listing-stats {
+    display: flex; gap: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--muted);
+  }
+  .listing-stats strong { color: var(--ink); font-weight: 600; font-size: 14px; }
+
+  .listings-footer { text-align: center; margin-top: 56px; }
+
+  /* AGENTS */
+  .agents {
+    padding: 100px 0;
+    background: var(--cream);
+  }
+  .agents-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .agents-header h2 {
+    font-size: clamp(32px, 4vw, 46px);
+    margin-top: 14px;
+  }
+  .agents-header h2 em { font-style: italic; color: var(--terracotta); }
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .agent-card {
+    perspective: 1000px;
+    border-radius: 20px;
+  }
+  .agent-card-inner {
+    position: relative;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s ease;
+  }
+  .agent-card-inner.flipped { transform: rotateY(180deg); }
+  .agent-front {
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--cream-2);
+    display: flex; flex-direction: column;
+    text-align: center;
+  }
+  .agent-back {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    transform: rotateY(180deg);
+    background: var(--ink);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 36px;
+  }
+  .agent-photo {
+    aspect-ratio: 4 / 3;
+    background-color: var(--line);
+    overflow: hidden;
+    width: 100%;
+  }
+  .agent-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .agent-body { padding: 24px 28px 28px; }
+  .agent-name {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .agent-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .agent-bio {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .agent-front .btn { align-self: center; display: block; margin: 0 auto; }
+  .agent-back .agent-name { color: #fff; font-size: 30px; margin-bottom: 6px; }
+  .agent-back .agent-title { margin-bottom: 32px; }
+  .agent-contact-item {
+    display: flex; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px; margin-bottom: 16px;
+    text-align: left; width: 100%;
+  }
+  .agent-contact-item svg { color: var(--terracotta); flex-shrink: 0; }
+  .btn-back {
+    margin-top: 28px;
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+  }
+  .btn-back:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 0;
+    background: var(--forest);
+    color: var(--cream);
+  }
+  .testimonials h2 {
+    color: var(--cream);
+    font-size: clamp(30px, 4vw, 42px);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 56px;
+  }
+  .testimonials h2 em { font-style: italic; color: #FFE082; }
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .t-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 34px;
+    border-radius: 16px;
+  }
+  .t-card .quote {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+    color: #E8EEF8;
+  }
+  .t-author { display: flex; align-items: center; gap: 14px; }
+  .t-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600;
+    color: var(--terracotta-dark);
+  }
+  .t-name { font-weight: 500; color: #fff; font-size: 15px; }
+  .t-loc { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* CTA / FORM */
+  .cta {
+    padding: 120px 0;
+    background: var(--cream);
+  }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .cta-left h2 {
+    font-size: clamp(36px, 4.5vw, 54px);
+    margin: 16px 0 22px;
+  }
+  .cta-left h2 em { font-style: italic; color: var(--terracotta); }
+  .cta-left p { color: var(--ink-soft); font-size: 16px; max-width: 440px; margin-bottom: 28px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 15px; color: var(--ink); }
+  .contact-item svg { color: var(--terracotta); flex-shrink: 0; }
+
+  .calc {
+    background: var(--cream-2);
+    padding: 40px;
+    border-radius: 20px;
+  }
+  .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: inherit; font-size: 15px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .field input:focus, .field select:focus { border-color: var(--terracotta); }
+  .calc .btn { width: 100%; justify-content: center; margin-top: 6px; }
+  .calc-results {
+    display: none;
+    margin-top: 28px;
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 28px;
+    color: #fff;
+  }
+  .calc-results.visible { display: block; }
+  .calc-monthly {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .calc-monthly-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55); margin-bottom: 6px;
+  }
+  .calc-monthly-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 48px; font-weight: 500;
+    color: var(--terracotta);
+    line-height: 1;
+  }
+  .calc-monthly-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .calc-breakdown {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .calc-breakdown-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
+  .calc-breakdown-value { font-size: 16px; font-weight: 600; color: #fff; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 70px 0 40px;
+    font-size: 14px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  footer .logo { color: #fff; margin-bottom: 16px; }
+  footer h4 {
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.14em; font-weight: 600;
+    margin-bottom: 18px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a:hover { color: #FFE082; }
+  .footer-bar {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 24px;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hero { min-height: 80vh; }
+    .search { grid-template-columns: 1fr; }
+    .values-grid, .listing-grid, .t-grid, .cta-grid { grid-template-columns: 1fr; gap: 30px; }
+    .agents-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .agents-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo"><img src="images/CovenantLogoNew.jpg" alt="Covenant Realty" style="height: 110px; width: auto;"></a>
+    <div class="nav-links">
+      <a href="#listings">Listings</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <span class="nav-phone">(435) 851-6948
+      </span>
+      <a href="#about" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Talk to an agent</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">Residential Real Estate · Central Utah</span>
+      <h1>Committed to <em>you</em> — Proven by results.</h1>
+      <p>We take pride in turning what can feel complex into a smooth, supportive, and positive real estate experience.</p>
+      <a href="#listings" class="btn btn-primary">See listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L3 9v13h6v-7h6v7h6V9z"/></svg>
+        </div>
+        <h3>Local expertise</h3>
+        <p>With deep expertise in Sanpete County, we understand local market trends and property values. We help clients make confident, informed real estate decisions.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Concierge from day one</h3>
+        <p>We’re connected with trusted local contractors, inspectors, and lenders to support every step of your real estate journey. Our network helps streamline the process and ensures you have reliable professionals guiding you from start to finish.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7L12 3 4 7v10l8 4 8-4z"/><path d="M12 12l8-5M12 12v10M12 12L4 7"/></svg>
+        </div>
+        <h3>Straight talk, every time</h3>
+        <p>We believe in straight talk when it comes to real estate—clear, honest communication you can rely on. You’ll always get the facts, not the fluff, so you can make confident decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section class="listings" id="listings">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <span class="eyebrow">Featured Listings</span>
+        <h2 style="margin-top:14px;">Homes we're <em>proud</em> to walk you through.</h2>
+      </div>
+      <p>Your next place might be just one visit away. Want to tour one this weekend? Just ask.</p>
+    </div>
+
+    <div class="listing-grid" id="listing-grid"></div>
+
+    <div class="listings-footer">
+      <a href="#contact" class="btn btn-ghost">Calculate your mortgage →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS / ABOUT -->
+<section class="agents" id="about">
+  <div class="container">
+    <div class="agents-header">
+      <span class="eyebrow">Meet the Team</span>
+      <h2>Experienced agents. <em>Real</em> results.</h2>
+    </div>
+    <div class="agents-grid">
+
+      <div class="agent-card">
+        <div class="agent-card-inner">
+          <div class="agent-front">
+            <div class="agent-photo"><img src="images/melanieCovenant.JPG" alt="Melanie" style="object-position: center 20%;"></div>
+            <div class="agent-body">
+              <div class="agent-name">Melanie</div>
+              <div class="agent-title">Broker</div>
+              <p class="agent-bio">With over 23 years in real estate, I’ve built my business on relationships, trust, and truly understanding my clients’ goals.</p>
+              <button class="btn btn-primary" onclick="flipCard(this)">Get in touch</button>
+            </div>
+          </div>
+          <div class="agent-back">
+            <div class="agent-name">Melanie</div>
+            <div class="agent-title">Broker</div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.8 19.8 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.27 5.08a1 1 0 0 1-.29 1L7.21 10.79a16 16 0 0 0 6 6l1.96-1.86a1 1 0 0 1 1-.29L21.25 16a1 1 0 0 1 .75 1z"/></svg>
+              (435) 851-6948
+            </div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              melaniebwathen@gmail.com
+            </div>
+            <button class="btn-back" onclick="flipCard(this)">← Back</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-card-inner">
+          <div class="agent-front">
+            <div class="agent-photo"><img src="images/JamieCovenant.jpg" alt="Jamie" style="filter: blur(0.5px) contrast(1.08) brightness(1.02); object-position: center 30%;"></div>
+            <div class="agent-body" style="padding-top: 10px;">
+              <div class="agent-name">Jamie</div>
+              <div class="agent-title">Realtor</div>
+              <p class="agent-bio">I take pride in guiding people through every step of the process with honesty, local insight, and a commitment to getting the best outcome possible.</p>
+              <button class="btn btn-primary" onclick="flipCard(this)" style="margin-top: -8px;">Get in touch</button>
+            </div>
+          </div>
+          <div class="agent-back">
+            <div class="agent-name">Jamie</div>
+            <div class="agent-title">Realtor</div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.8 19.8 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.27 5.08a1 1 0 0 1-.29 1L7.21 10.79a16 16 0 0 0 6 6l1.96-1.86a1 1 0 0 1 1-.29L21.25 16a1 1 0 0 1 .75 1z"/></svg>
+              (801) 367-3708
+            </div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              jjo2050@hotmail.com
+            </div>
+            <button class="btn-back" onclick="flipCard(this)">← Back</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-card-inner">
+          <div class="agent-front">
+            <div class="agent-photo"><img src="images/RyanCovenant.jpg" alt="Ryan" style="object-position: center 20%;"></div>
+            <div class="agent-body">
+              <div class="agent-name">Ryan</div>
+              <div class="agent-title">Realtor</div>
+              <p class="agent-bio">18 years in, and I’m still doing what I love - building community, connection and lasting relationships, one home at a time.</p>
+              <button class="btn btn-primary" onclick="flipCard(this)">Get in touch</button>
+            </div>
+          </div>
+          <div class="agent-back">
+            <div class="agent-name">Ryan</div>
+            <div class="agent-title">Realtor</div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.8 19.8 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.27 5.08a1 1 0 0 1-.29 1L7.21 10.79a16 16 0 0 0 6 6l1.96-1.86a1 1 0 0 1 1-.29L21.25 16a1 1 0 0 1 .75 1z"/></svg>
+              (801) 735-3408
+            </div>
+            <div class="agent-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              spvrealty@gmail.com
+            </div>
+            <button class="btn-back" onclick="flipCard(this)">← Back</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <h2><em>"Melanie is a great realtor! She will do everything in her power to help you get in the home you want!"</em></h2>
+    <div class="t-grid">
+      <div class="t-card">
+        <p class="quote">"We recently sold a home and purchased another. And MELANIE WATHEN guided us through the process with uncommon grace, kindness, and complete professionalism. She handled everything so smoothly - the entire experience was a joy. And we couldn't be more pleased with her work for us!"</p>
+        <div class="t-author">
+          <div class="t-avatar">MH</div>
+          <div>
+            <div class="t-name">Micheal Huff </div>
+            <div class="t-loc">Buyer</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <p class="quote">"Melanie did an excellent job selling my parents house! She was really good at helping us set the price, which caused us to sell quickly. We were very happy with the entire process from start to finish. I recommend Covenant Realty without hesitation."</p>
+        <div class="t-author">
+          <div class="t-avatar">BS</div>
+          <div>
+            <div class="t-name">Brent Smith</div>
+            <div class="t-loc">Seller</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORTGAGE CALCULATOR -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="cta-left">
+        <span class="eyebrow">Plan Your Purchase</span>
+        <h2>Estimate your <em>monthly</em> payment.</h2>
+        <p>Use our mortgage calculator to get a quick estimate based on your home price, down payment, and current rates. Ready to take the next step? Reach out to Melanie directly.</p>
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19.8 19.8 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75l1.27 5.08a1 1 0 0 1-.29 1L7.21 10.79a16 16 0 0 0 6 6l1.96-1.86a1 1 0 0 1 1-.29L21.25 16a1 1 0 0 1 .75 1z"/></svg>
+          (435) 851-6948
+        </div>
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          melanie@covenantrealty.com
+        </div>
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ephraim, Utah
+        </div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="field">
+            <label>Home Price</label>
+            <input type="text" id="calc-price" placeholder="$400,000" oninput="formatCurrency(this)">
+          </div>
+          <div class="field">
+            <label>Down Payment</label>
+            <input type="text" id="calc-down" placeholder="$80,000" oninput="formatCurrency(this)">
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="field">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="calc-rate" placeholder="6.5" step="0.1" min="0">
+          </div>
+          <div class="field">
+            <label>Loan Term</label>
+            <select id="calc-term">
+              <option value="30">30 years</option>
+              <option value="20">20 years</option>
+              <option value="15">15 years</option>
+              <option value="10">10 years</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="calculateMortgage()">Calculate payment</button>
+
+        <div class="calc-results" id="calc-results">
+          <div class="calc-monthly">
+            <div class="calc-monthly-label">Estimated Monthly Payment</div>
+            <div class="calc-monthly-amount" id="calc-monthly">—</div>
+            <div class="calc-monthly-sub">Principal &amp; interest only — does not include taxes or insurance</div>
+          </div>
+          <div class="calc-breakdown">
+            <div>
+              <div class="calc-breakdown-label">Loan Amount</div>
+              <div class="calc-breakdown-value" id="calc-loan">—</div>
+            </div>
+            <div>
+              <div class="calc-breakdown-label">Total Interest Paid</div>
+              <div class="calc-breakdown-value" id="calc-interest">—</div>
+            </div>
+            <div>
+              <div class="calc-breakdown-label">Total Cost of Loan</div>
+              <div class="calc-breakdown-value" id="calc-total">—</div>
+            </div>
+            <div>
+              <div class="calc-breakdown-label">Loan Term</div>
+              <div class="calc-breakdown-value" id="calc-term-display">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo"><img src="images/CovenantRealtyLogo.jpg" alt="Covenant Realty" style="height: 110px; width: auto;"></div>
+        <p style="margin-top: 8px; max-width: 280px;">A family-feel brokerage serving Utah, Juab, Sanpete, and Sevier counties. Our Promise is Your Guarantee.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#listings">Listings</a></li>
+          
+          
+          
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#about">Our team</a></li>
+          <li><a href="#testimonials">Client stories</a></li>
+          
+          
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>(435) 851-6948</li>
+          <li>melaniebwathen@gmail.com</li>
+          <li>Ephraim<br>Utah 84627</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div>© 2026 Covenant Realty. All rights reserved.</div>
+      <div>Equal Housing Opportunity · Licensed in Utah</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  //  LISTINGS — Edit this section to update the featured homes.
+  //  Only 3 listings will show at a time.
+  //
+  //  For each listing, fill in:
+  //    tag     — label on the photo (e.g. "New", "Open Sat", "Price Drop")
+  //    photo   — path to the image file (e.g. "images/house1.jpg")
+  //    price   — asking price (e.g. "$549,000")
+  //    address — short description and location
+  //    beds    — number of bedrooms
+  //    baths   — number of bathrooms
+  //    sqft    — square footage (e.g. "2,150")
+  //    acres   — lot size (e.g. "0.3")
+  // ============================================================
+  const LISTINGS = [
+    {
+      tag:     "New",
+      photo:   "images/Listingimage1/IMG_8900.jpg",
+      price:   "$599,000",
+      address: "Modern farmhouse · Mapleton, Utah County",
+      beds:    3,
+      baths:   2,
+      sqft:    "4126",
+      acres:   "0.33"
+    },
+    {
+      tag:     "New",
+      photo:   "images/Listingimage2/Untitled design (7).JPEG",
+      price:   "$345,000",
+      address: "Ephraim, UT",
+      beds:    3,
+      baths:   2.5,
+      sqft:    "1260",
+      acres:   "0.01"
+    },
+    {
+      tag:     "New",
+      photo:   "images/Listingimage3/IMG_7851.jpg",
+      price:   "$705,000",
+      address: "Ephraim, UT",
+      beds:    7,
+      baths:   3.5,
+      sqft:    "4776",
+      acres:   "0.4"
+    }
+  ];
+  // ============================================================
+
+  document.getElementById('listing-grid').innerHTML = LISTINGS.slice(0, 3).map(l => `
+    <div class="listing">
+      <div class="listing-photo" style="background-image: url('${l.photo}');">
+        <span class="listing-tag">${l.tag}</span>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">${l.price}</div>
+        <div class="listing-addr">${l.address}</div>
+        <div class="listing-stats">
+          <div><strong>${l.beds}</strong> beds</div>
+          <div><strong>${l.baths}</strong> baths</div>
+          <div><strong>${l.sqft}</strong> sqft</div>
+          <div><strong>${l.acres}</strong> acre</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  function flipCard(btn) {
+    btn.closest('.agent-card-inner').classList.toggle('flipped');
+  }
+
+  function formatCurrency(el) {
+    let raw = el.value.replace(/[^0-9]/g, '');
+    if (raw) el.value = '$' + Number(raw).toLocaleString();
+    else el.value = '';
+  }
+
+  function parseDollars(val) {
+    return parseFloat(val.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  function formatMoney(n) {
+    return '$' + Math.round(n).toLocaleString();
+  }
+
+  function calculateMortgage() {
+    const price    = parseDollars(document.getElementById('calc-price').value);
+    const down     = parseDollars(document.getElementById('calc-down').value);
+    const rate     = parseFloat(document.getElementById('calc-rate').value) || 0;
+    const termYrs  = parseInt(document.getElementById('calc-term').value);
+    const loan     = price - down;
+
+    if (!price || !rate || loan <= 0) {
+      alert('Please fill in Home Price, Down Payment, and Interest Rate.');
+      return;
+    }
+
+    const r = (rate / 100) / 12;
+    const n = termYrs * 12;
+    const monthly = loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = monthly * n;
+    const totalInterest = totalPaid - loan;
+
+    document.getElementById('calc-monthly').textContent       = formatMoney(monthly) + '/mo';
+    document.getElementById('calc-loan').textContent          = formatMoney(loan);
+    document.getElementById('calc-interest').textContent      = formatMoney(totalInterest);
+    document.getElementById('calc-total').textContent         = formatMoney(totalPaid);
+    document.getElementById('calc-term-display').textContent  = termYrs + ' years';
+    document.getElementById('calc-results').classList.add('visible');
+  }
+</script>
+</body>
+</html>
