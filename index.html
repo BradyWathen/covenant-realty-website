@@ -213,6 +213,85 @@
 
   .listings-footer { text-align: center; margin-top: 56px; }
 
+  /* LAND LISTINGS */
+  .land {
+    padding: 100px 0;
+    background: var(--cream);
+  }
+  .land-grid {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .land-grid::-webkit-scrollbar { height: 10px; }
+  .land-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+  .land-card {
+    background: var(--cream-2);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+    flex: 0 0 340px;
+    scroll-snap-align: start;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .land-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(26,42,94,0.25); }
+  .land-banner {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #1B3320 0%, #2D5530 55%, #4A7C4A 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 28px;
+  }
+  .land-banner-icon {
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 16px;
+  }
+  .land-acres {
+    font-family: 'Fraunces', serif;
+    font-size: 62px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1;
+  }
+  .land-acres-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.6);
+    margin-top: 10px;
+  }
+  .land-tag {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--cream); color: var(--ink);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+  }
+  .land-body { padding: 24px 26px 28px; }
+  .land-price {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 500;
+    color: var(--ink);
+  }
+  .land-addr { color: var(--ink-soft); font-size: 15px; margin: 4px 0 16px; }
+  .land-stats {
+    display: flex; gap: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .land-stats strong { color: var(--ink); font-weight: 600; font-size: 14px; }
+
   /* AGENTS */
   .agents {
     padding: 100px 0;
@@ -499,6 +578,7 @@
     <a href="#" class="logo"><img src="images/CovenantLogoNew.jpg" alt="Covenant Realty" style="height: 110px; width: auto;"></a>
     <div class="nav-links">
       <a href="#listings">Listings</a>
+      <a href="#land">Land</a>
       <a href="#about">About</a>
       <a href="#testimonials">Clients</a>
       <a href="#contact">Contact</a>
@@ -569,6 +649,20 @@
     <div class="listings-footer">
       <a href="#contact" class="btn btn-ghost">Calculate your mortgage →</a>
     </div>
+  </div>
+</section>
+
+<!-- LAND LISTINGS -->
+<section class="land" id="land">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <span class="eyebrow">Land Listings</span>
+        <h2 style="margin-top:14px;">Looking for <em>Land?</em></h2>
+      </div>
+      <p>Build your dream from the ground up. We have parcels across Central Utah ready for your vision.</p>
+    </div>
+    <div class="land-grid" id="land-grid"></div>
   </div>
 </section>
 
@@ -841,7 +935,8 @@
       beds:    5,
       baths:   4,
       sqft:    "2,912",
-      acres:   "1.01"
+      acres:   "1.01",
+      url:     "https://www.utahrealestate.com/2155109?actor=78891&share=ios"
     },
     {
       tag:     "New",
@@ -851,7 +946,8 @@
       beds:    3,
       baths:   2.5,
       sqft:    "1260",
-      acres:   "0.01"
+      acres:   "0.01",
+      url:     "https://www.utahrealestate.com/2100171?actor=78891&share=ios"
     },
     {
       tag:     "New",
@@ -861,9 +957,9 @@
       beds:    7,
       baths:   3.5,
       sqft:    "4776",
-      acres:   "0.4"
-    }
-    ,
+      acres:   "0.4",
+      url:     "https://www.utahrealestate.com/2153381?actor=78891&share=ios"
+    },
     {
       tag:     "New",
       photo:   "images/Listingimage4/listingimage4.jpg",
@@ -872,7 +968,8 @@
       beds:    5,
       baths:   3,
       sqft:    "3,473",
-      acres:   "0.32"
+      acres:   "0.32",
+      url:     "https://www.utahrealestate.com/2155234?actor=78891&share=ios"
     },
     {
       tag:     "New",
@@ -882,13 +979,25 @@
       beds:    3,
       baths:   2,
       sqft:    "1,223",
-      acres:   "0.10"
+      acres:   "0.10",
+      url:     "https://www.utahrealestate.com/2139848?actor=78891&share=ios"
+    },
+    {
+      tag:     "New",
+      photo:   "images/ListingImage6/Listingimage.jpg",
+      price:   "$479,000",
+      address: "Manti, UT",
+      beds:    5,
+      baths:   4,
+      sqft:    "3,438",
+      acres:   "0.62",
+      url:     "https://www.utahrealestate.com/365-W-100-S-Manti-UT-84642/2167164"
     }
   ];
   // ============================================================
 
-  document.getElementById('listing-grid').innerHTML = LISTINGS.slice(0, 5).map(l => `
-    <div class="listing">
+  document.getElementById('listing-grid').innerHTML = LISTINGS.slice(0, 6).map(l => `
+    <a class="listing" href="${l.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
       <div class="listing-photo" style="background-image: url('${l.photo}');">
         <span class="listing-tag">${l.tag}</span>
       </div>
@@ -902,7 +1011,61 @@
           <div><strong>${l.acres}</strong> acre</div>
         </div>
       </div>
-    </div>
+    </a>
+  `).join('');
+
+  const LAND = [
+    {
+      price:   "$96,000",
+      address: "Escalante, UT",
+      acres:   "2.00",
+      zoning:  "Residential",
+      feature: "Canyon views",
+      url:     "https://www.utahrealestate.com/2138263?actor=78891&share=ios"
+    },
+    {
+      price:   "$85,000",
+      address: "Fairview, UT",
+      acres:   "5.35",
+      zoning:  "R-1 Residential",
+      feature: "Off-grid capable",
+      url:     "https://www.utahrealestate.com/2103952?actor=78891&share=ios"
+    },
+    {
+      price:   "$39,500",
+      address: "Fairview, UT",
+      acres:   "2.04",
+      zoning:  "R-1 Residential",
+      feature: "Valley views",
+      url:     "https://www.utahrealestate.com/2103939?actor=78891&share=ios"
+    },
+    {
+      price:   "$1,370,000",
+      address: "Ephraim, UT",
+      acres:   "171.37",
+      zoning:  "Agricultural",
+      feature: "4 water rights · Panoramic views",
+      url:     "https://www.utahrealestate.com/2167243?actor=78891&share=ios"
+    }
+  ];
+
+  document.getElementById('land-grid').innerHTML = LAND.map(l => `
+    <a class="land-card" href="${l.url}" target="_blank" rel="noopener noreferrer">
+      <div class="land-banner">
+        <span class="land-tag">Land</span>
+        <svg class="land-banner-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 17l4-8 4 4 3-6 4 10H3z"/><path d="M3 20h18"/></svg>
+        <div class="land-acres">${l.acres}</div>
+        <div class="land-acres-label">Acres</div>
+      </div>
+      <div class="land-body">
+        <div class="land-price">${l.price}</div>
+        <div class="land-addr">${l.address}</div>
+        <div class="land-stats">
+          <div><strong>${l.zoning}</strong> zoning</div>
+          <div><strong>${l.feature}</strong></div>
+        </div>
+      </div>
+    </a>
   `).join('');
 
   function flipCard(btn) {
