@@ -930,7 +930,7 @@
     {
       tag:     "New",
       photo:   "images/Listingimage1/listingimage1.jpg",
-      price:   "$669,000",
+      price:   "$625,000",
       address: "Ephraim, Utah",
       beds:    5,
       baths:   4,
@@ -992,11 +992,33 @@
       sqft:    "3,438",
       acres:   "0.62",
       url:     "https://www.utahrealestate.com/365-W-100-S-Manti-UT-84642/2167164"
+    },
+    {
+      tag:     "New",
+      photo:   "images/ListingImage7/Listingimage7.jpg",
+      price:   "$450,000",
+      address: "15 E 780 S, Ephraim, UT",
+      beds:    5,
+      baths:   3,
+      sqft:    "2,834",
+      acres:   "0.25",
+      url:     "https://www.utahrealestate.com/2169866?actor=78891&share=ios"
+    },
+    {
+      tag:     "New",
+      photo:   "images/ListingImage8/Listingimage8.jpg",
+      price:   "$475,000",
+      address: "1158 W 360 S #103, American Fork, UT",
+      beds:    4,
+      baths:   3,
+      sqft:    "2,073",
+      acres:   "0.03",
+      url:     "https://www.utahrealestate.com/2168898?actor=78891&share=ios"
     }
   ];
   // ============================================================
 
-  document.getElementById('listing-grid').innerHTML = LISTINGS.slice(0, 6).map(l => `
+  document.getElementById('listing-grid').innerHTML = LISTINGS.map(l => `
     <a class="listing" href="${l.url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
       <div class="listing-photo" style="background-image: url('${l.photo}');">
         <span class="listing-tag">${l.tag}</span>
